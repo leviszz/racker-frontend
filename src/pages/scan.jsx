@@ -1,3 +1,4 @@
+import { Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { LogOut } from "lucide-react"; 
 import { useNavigate } from "react-router-dom"; // Se estiver usando react-router
@@ -6,6 +7,7 @@ export default function Scan() {
   const [erro, setErro] = useState(false);
   const [carregando, setCarregando] = useState(false);
   const navigate = useNavigate();
+  
 
 const handleLogout = () => {
   localStorage.removeItem("token"); // Remove o acesso
@@ -88,8 +90,15 @@ const handleLogout = () => {
             )}
 
             {carregando && !resultados && (
-              <tr><td colSpan="7" className="text-center p-6 italic text-yellow-200">Buscando dados no servidor...</td></tr>
-            )}
+            <tr>
+              <td colSpan="7" className="p-6">
+                <div className="flex items-center justify-center gap-3 italic text-yellow-200">
+                  <Loader2 className="h-5 w-5 animate-spin" />
+                  <span>Buscando oportunidades em 18 mil pares...</span>
+                </div>
+              </td>
+            </tr>
+          )}
 
             {!erro && resultados?.length === 0 && (
               <tr><td colSpan="7" className="text-center p-6">Nenhum sinal encontrado no momento</td></tr>

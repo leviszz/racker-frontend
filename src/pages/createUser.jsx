@@ -15,7 +15,7 @@ export default function CreateUser() {
     setMsg("")
 
     try {
-      const response = await fetch("https://racker-ultra-api-update.onrender.com/admin/create-user", {
+      const response = await fetch("http://127.0.0.1:8000/admin/create-user", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
