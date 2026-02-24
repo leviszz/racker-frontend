@@ -1,4 +1,5 @@
 import { useState } from "react"
+import HeaderSimple from "./head"
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("")
@@ -36,11 +37,27 @@ export default function ForgotPassword() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 flex items-center justify-center text-white">
-      <form
-        onSubmit={handleForgot}
-        className="bg-slate-950 p-8 rounded-xl w-96 border border-slate-800" // Adicionei uma borda sutil para destacar do fundo
-      >
+    
+    <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center text-white px-4">
+
+  <h1 className="
+    text-2xl sm:text-3xl md:text-4xl
+    font-russo-one
+    text-yellow-400
+    tracking-tight
+    
+    drop-shadow-[0_0_15px_rgba(250,204,21,0.4)]
+    leading-none
+    mb-8
+    pb-10
+  ">
+    V-BOSS <span className="hidden sm:inline">RACKER</span>
+  </h1>
+
+  <form
+    onSubmit={handleForgot}
+    className="bg-slate-900 p-8 rounded-xl w-full max-w-md border border-slate-800"
+  >
         <h2 className="text-2xl mb-6 text-yellow-400 font-bold">
           Esqueci minha senha
         </h2>

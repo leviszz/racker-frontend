@@ -1,18 +1,15 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import Footer from "./footer"
 
 export default function Login() {
   const navigate = useNavigate()
-
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  // 1. Estado de carregamento
   const [loading, setLoading] = useState(false)
 
   async function handleLogin(e) {
     e.preventDefault()
-
-    // 2. Inicia o loading
     setLoading(true)
 
     try {
@@ -29,66 +26,62 @@ export default function Login() {
 
       if (!response.ok) {
         alert("Login inválido")
-        return // O bloco 'finally' executará mesmo com esse return
+        return 
       }
 
       const data = await response.json()
-
-      // salva token
       localStorage.setItem("token", data.access_token)
-
-      // redireciona
       navigate("/scan")
 
     } catch (error) {
       console.error(error)
       alert("Erro ao conectar com servidor")
     } finally {
-      // 3. Garante que o spinner pare, independente do resultado
       setLoading(false)
     }
   }
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-linear-to-br bg-[#060b1a] ">
-      <div className="w-full max-w-md bg-slate-900/80 backdrop-blur-md p-8 rounded-2xl shadow-2xl border border-slate-700">
+    // Adicionado p-4 para mobile e min-h-screen centralizado
+    <div className="min-h-screen w-full flex items-center justify-center bg-[#060b1a] p-4">
+      
+      {/* max-w-md no desktop, w-full no mobile */}
+      <div className="w-full max-w-[400px] bg-slate-900/60 backdrop-blur-xl p-6 md:p-8 rounded-2xl shadow-2xl border border-slate-800">
         
-        <h1 className="text-3xl font-bold text-center text-yellow-400 mb-2">
+        {/* Título com estilo 'Hacker' mais forte */}
+        <h1 className="text-3xl md:text-4xl mb-10 font-russo-one  text-center text-yellow-400 mb-2 uppercase  drop-shadow-[0_0_10px_rgba(250,204,21,0.3)]">
           V-BOSS Racker
         </h1>
 
-        <p className="text-center text-slate-400 mb-8">
-          Acesse sua conta
-        </p>
+        
 
-        <form onSubmit={handleLogin} className="space-y-5">
+        <form onSubmit={handleLogin} className="space-y-6">
           
           <div>
-            <label className="block text-sm text-slate-400 mb-2">
+            <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 ml-1">
               Email
             </label>
             <input
               type="email"
               value={email}
-              // Desabilita input durante loading
               disabled={loading}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition disabled:opacity-50 disabled:cursor-not-allowed"
+              // text-base evita o auto-zoom no iPhone
+              className="w-full bg-slate-950/50 border border-slate-700 rounded-xl px-4 py-3.5 text-base text-white placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-yellow-400/50 focus:border-yellow-400 transition-all disabled:opacity-50"
               placeholder="seu@email.com"
             />
           </div>
 
           <div>
-            <label className="block text-sm text-slate-400 mb-2">
+            <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 ml-1">
               Senha
             </label>
             <input
               type="password"
               value={password}
-              // Desabilita input durante loading
               disabled={loading}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-slate-950/50 border border-slate-700 rounded-xl px-4 py-3.5 text-base text-white placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-yellow-400/50 focus:border-yellow-400 transition-all disabled:opacity-50"
               placeholder="********"
             />
           </div>
@@ -96,28 +89,27 @@ export default function Login() {
           <button
             type="submit"
             disabled={loading}
-            className={`w-full font-bold py-3 rounded-lg transition-all duration-200 shadow-lg flex justify-center items-center ${
+            // text-slate-950 oferece melhor contraste no fundo amarelo
+            className={`w-full h-14 font-black uppercase tracking-widest rounded-xl transition-all duration-300  flex justify-center items-center ${
               loading 
-                ? "bg-yellow-600 cursor-not-allowed" 
-                : "bg-yellow-500 hover:bg-yellow-400 text-white" // Mudei a cor do texto para slate-900 para melhor contraste com amarelo
+                ? "bg-yellow-600 cursor-not-allowed opacity-70" 
+                : "bg-yellow-400 hover:bg-yellow-300 text-white active:scale-[0.98] hover:shadow-[0_0_25px_rgba(250,204,21,0.4)]"
             }`}
           >
             {loading ? (
-              // Spinner (com cor escura para aparecer no amarelo)
-              <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <svg className="animate-spin h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                <path className="opacity-100" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
               </svg>
             ) : (
-              "Entrar"
+              "Entrar no Sistema"
             )}
           </button>
 
-          <div className="text-center">
+          <div className="text-center pt-2">
             <a
               href="/forgot-password"
-              // Opcional: pointer-events-none impede clicar no link enquanto carrega o login
-              className={`text-sm text-slate-400 hover:text-yellow-400 transition ${loading ? 'pointer-events-none opacity-50' : ''}`}
+              className={`text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-yellow-400 transition-colors ${loading ? 'pointer-events-none opacity-50' : ''}`}
             >
               Esqueci minha senha
             </a>

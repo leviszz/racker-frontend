@@ -1,6 +1,26 @@
+/* 1. Importa as fontes do Google PRIMEIRO (Regra obrigatória do CSS) */
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Righteous&family=Russo+One&family=Sora:wght@100..800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+
+
+
+/* 2. Importa o Tailwind v4 UMA ÚNICA VEZ logo em seguida */
 @import "tailwindcss";
 
+/* 3. Configura o tema das novas fontes no Tailwind v4 */
+@theme {
+  --font-orbitron: 'Orbitron', sans-serif;
+  --font-russo-one: 'Russo One', sans-serif;
+  --font-righteous: 'Righteous', cursive;
+  --font-ubuntu: 'Ubuntu', sans-serif;
+  --font-exo-2: 'Exo 2', sans-serif;
+  --font-sora: 'Sora', sans-serif;
 
+}
+
+/* --------------------------------------------------- */
+/* O resto do seu código continua intacto a partir daqui */
+/* --------------------------------------------------- */
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;

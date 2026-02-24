@@ -45,12 +45,26 @@ export default function ResetPassword() {
   }
 
   return (
-    <div className="min-h-screen bg-[#060b1a] flex items-center justify-center text-white">
-      <form
-        onSubmit={handleReset}
-        // Adicionei borda e sombra para destacar o formulário do fundo
-        className="bg-[#060b1a] p-8 rounded-xl w-96 border border-slate-800 shadow-xl"
-      >
+    <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center text-white px-4">
+
+  <h1 className="
+    text-2xl sm:text-3xl md:text-4xl
+    font-russo-one
+    text-yellow-400
+    tracking-tight
+    
+    drop-shadow-[0_0_15px_rgba(250,204,21,0.4)]
+    leading-none
+    mb-8
+    pb-10
+  ">
+    V-BOSS <span className="hidden sm:inline">RACKER</span>
+  </h1>
+
+  <form
+    onSubmit={handleReset}
+    className="bg-slate-900 p-8 rounded-xl w-full max-w-md border border-slate-800"
+  >
         <h2 className="text-2xl mb-6 text-yellow-400 font-bold">
           Definir Nova Senha
         </h2>
