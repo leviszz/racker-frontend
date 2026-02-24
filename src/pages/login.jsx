@@ -90,10 +90,10 @@ export default function Login() {
             type="submit"
             disabled={loading}
             // text-slate-950 oferece melhor contraste no fundo amarelo
-            className={`w-full h-14 font-black uppercase tracking-widest rounded-xl transition-all duration-300  flex justify-center items-center ${
+            className={`w-full h-14 f uppercase tracking-widest rounded-xl transition-all duration-300  flex justify-center items-center ${
               loading 
                 ? "bg-yellow-600 cursor-not-allowed opacity-70" 
-                : "bg-yellow-400 hover:bg-yellow-300 text-white active:scale-[0.98] hover:shadow-[0_0_25px_rgba(250,204,21,0.4)]"
+                : "bg-[#17181a] hover:bg-yellow-300 text-white active:scale-[0.98] hover:shadow-[0_0_25px_rgba(250,204,21,0.4)]"
             }`}
           >
             {loading ? (
