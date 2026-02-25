@@ -19,7 +19,7 @@ export default function Scan() {
 
     try {
       const res = await fetch(
-        "https://racker-ultra-api-update.onrender.com/scan",
+        "http://127.0.0.1:8000/scan",
         {
           headers: {
             Authorization: `Bearer ${token}`,
