@@ -7,37 +7,34 @@ import ResetPassword from "./pages/resetPassword"
 import ForgotPassword from "./pages/forgotPassword.jsx"
 import HeaderSimple from "./pages/head"
 
-// Importe seus componentes de layout
+// 1. IMPORTANTE: Importe o componente que criamos no passo anterior
+import DashboardAdmin from "./pages/DashboardAdmin" 
+
 import Header from "./pages/header.jsx" 
 import Footer from "./pages/footer.jsx"
 
 export default function App() {
   return (
     <BrowserRouter>
-      {/* A div abaixo é o segredo:
-        1. min-h-screen: Garante que o app ocupe toda a altura da tela.
-        2. flex-col: Empilha Header, Conteúdo e Footer.
-      */}
       <div className="min-h-screen flex flex-col bg-[#060b1a]">
         
         <Routes>
-          {/* Rotas que NÃO precisam de Header/Footer (como o Login) */}
+          {/* LOGIN */}
           <Route path="/" element={
-            <div>
-            <main className="flex-1">
-              <Login />
-            </main>
-            <Footer />
+            <div className="flex flex-col min-h-screen">
+              <main className="flex-1">
+                <Login />
+              </main>
+              <Footer />
             </div>
           } />
 
-          {/* Rotas que PRECISAM de estrutura (Scan, Dashboard, etc) */}
+          {/* SCAN (Protegido) */}
           <Route
             path="/scan"
             element={
               <PrivateRoute>
                 <Header /> 
-                {/* flex-1 faz este conteúdo "empurrar" o footer para baixo */}
                 <main className="flex-1">
                   <Scan />
                 </main>
@@ -46,6 +43,21 @@ export default function App() {
             }
           />
 
+          {/* NOVO: DASHBOARD ADMIN (Protegido) */}
+          <Route
+            path="/admin/dashboard"
+            element={
+              <PrivateRoute>
+                <Header /> 
+                <main className="flex-1">
+                  <DashboardAdmin />
+                </main>
+                <Footer />
+              </PrivateRoute>
+            }
+          />
+
+          {/* CREATE USER */}
           <Route
             path="/create-user"
             element={
@@ -55,26 +67,23 @@ export default function App() {
             }
           />
 
+          {/* RESET PASSWORD */}
           <Route path="/reset-password" element={
-            
-            <div>
-              <div>
+            <div className="flex flex-col min-h-screen">
+              <main className="flex-1">
                 <ResetPassword />
-              </div>
+              </main>
               <Footer />
-              
             </div>
-            
-            } />
+          } />
 
-
+          {/* FORGOT PASSWORD */}
           <Route path="/forgot-password" element={
-            <div>
-              <div>
+            <div className="flex flex-col min-h-screen">
+              <main className="flex-1">
                 <ForgotPassword />
-              </div>
+              </main>
               <Footer />
-              
             </div>
           } />
         </Routes>

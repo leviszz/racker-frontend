@@ -2,6 +2,7 @@ import { Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+
 export default function Scan() {
   const [resultados, setResultados] = useState(null);
   const [erro, setErro] = useState(false);
@@ -9,6 +10,21 @@ export default function Scan() {
   const [cooldown, setCooldown] = useState(0);
 
   const navigate = useNavigate();
+
+  // Adicione isso abaixo da sua função fetchScan:
+  const registrarCliqueMoeda = async (moeda) => {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+
+    try {
+      await fetch(`https://racker-ultra-api-update.onrender.com/track-coin/${moeda}`, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+    } catch (err) {
+      console.error("Erro ao registrar clique na moeda:", err);
+    }
+  };
 
   // ================= FUNÇÃO DE REQUISIÇÃO =================
   async function fetchScan() {
@@ -191,6 +207,7 @@ export default function Scan() {
                       target="_blank"
                       rel="noreferrer"
                       className="text-sky-500 font-bold hover:underline"
+                      onClick={() => registrarCliqueMoeda(r.par)}
                     >
                       ABRIR
                     </a>
@@ -275,6 +292,7 @@ export default function Scan() {
           target="_blank"
           rel="noreferrer"
           className="block text-center bg-yellow-500 text-black font-bold py-2 rounded-lg hover:bg-yellow-400 transition"
+          onClick={() => registrarCliqueMoeda(r.par)}
         >
           ABRIR NA BINANCE
         </a>
