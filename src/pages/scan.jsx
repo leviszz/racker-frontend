@@ -1,6 +1,7 @@
 import { Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import DashboardScan from "./dashboardscan";
 
 
 export default function Scan() {
@@ -17,7 +18,7 @@ export default function Scan() {
     if (!token) return;
 
     try {
-      await fetch(`https://racker-ultra-api-update.onrender.com/track-coin/${moeda}`, {
+      await fetch(`http://127.0.0.1:8000/track-coin/${moeda}`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -35,7 +36,7 @@ export default function Scan() {
 
     try {
       const res = await fetch(
-        "https://racker-ultra-api-update.onrender.com/scan",
+        "http://127.0.0.1:8000/scan",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -87,6 +88,10 @@ export default function Scan() {
           </section>
         </div>
       </nav>
+      <div>
+          <DashboardScan />
+        </div>
+      
 
       {/* ================= RETÂNGULO VERMELHO COM BOTÃO ================= */}
       <div className="flex justify-center mb-14 bg">
@@ -124,7 +129,7 @@ export default function Scan() {
 </div>
 
       {/* ================= TABELA DESKTOP ================= */}
-      <div className="hidden md:block overflow-x-auto px-4 md:px-0 w-full">
+      <div className="hidden md:block pb-10 overflow-x-auto px-4 md:px-0 w-full">
         <table className="w-full min-w-[900px] max-w-6xl mx-auto border-collapse rounded-xl overflow-hidden shadow-xl">
           <thead className="bg-yellow-500 text-black">
             <tr>
