@@ -13,7 +13,7 @@ export default function DashboardScan() {
       const token = localStorage.getItem("token");
       if (!token) return;
       try {
-        const response = await fetch("http://127.0.0.1:8000/users/me", {
+        const response = await fetch("https://racker-ultra-api-update.onrender.com/users/me", {
           headers: { "Authorization": `Bearer ${token}` }
         });
         if (response.ok) {
@@ -32,7 +32,7 @@ export default function DashboardScan() {
     setLoading(true);
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://127.0.0.1:8000/admin/dashboard-stats?periodo=${periodoSelecionado}`, {
+      const response = await fetch(`https://racker-ultra-api-update.onrender.com/admin/dashboard-stats?periodo=${periodoSelecionado}`, {
         headers: { "Authorization": `Bearer ${token}` }
       });
       if (response.ok) {
@@ -56,7 +56,7 @@ export default function DashboardScan() {
     const token = localStorage.getItem("token");
     try {
       // Verifique se o endpoint é /admin/reset-stats ou /admin/reset-clicks conforme seu main.py
-      const response = await fetch("http://127.0.0.1:8000/admin/reset-clicks", {
+      const response = await fetch("https://racker-ultra-api-update.onrender.com/admin/reset-clicks", {
         method: "DELETE",
         headers: { "Authorization": `Bearer ${token}` }
       });

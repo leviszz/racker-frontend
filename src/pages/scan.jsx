@@ -18,7 +18,7 @@ export default function Scan() {
     if (!token) return;
 
     try {
-      await fetch(`http://127.0.0.1:8000/track-coin/${moeda}`, {
+      await fetch(`https://racker-ultra-api-update.onrender.com/track-coin/${moeda}`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -36,7 +36,7 @@ export default function Scan() {
 
     try {
       const res = await fetch(
-        "http://127.0.0.1:8000/scan",
+        "https://racker-ultra-api-update.onrender.com/scan",
         {
           headers: {
             Authorization: `Bearer ${token}`,
