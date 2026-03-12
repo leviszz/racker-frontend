@@ -114,7 +114,7 @@ export default function Scan() {
     const token = localStorage.getItem("token");
     if (!token) return;
     try {
-      await fetch(`https://racker-ultra-api-update.onrender.com/track-coin/${moeda}`, {
+      await fetch(`http://127.0.0.1:8000/track-coin/${moeda}`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -128,7 +128,7 @@ export default function Scan() {
     if (!token) return;
     setCarregando(true);
     try {
-      const res = await fetch("https://racker-ultra-api-update.onrender.com/scan", {
+      const res = await fetch("http://127.0.0.1:8000/scan", {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -195,13 +195,13 @@ export default function Scan() {
             px-20 py-5 rounded-xl font-bold text-lg md:text-xl
             transition-all duration-300 transform
             bg-green-600 text-white
-            shadow-[0_0_20px_rgba(255,215,0,0.4)]
+            shadow-[0_0_20px_rgba(255,215,0,0.4)] m-5
             ${(cooldown === 0 && !carregando) ? "hover:scale-105" : "cursor-not-allowed"}
           `}
         >
           {carregando ? (
             <span className="flex items-center gap-3">
-              <Loader2 className="h-5 w-5 animate-spin" />
+              <Loader2 className="h-5 w-5 animate-spin " />
               Buscando oportunidades...
             </span>
           ) : cooldown > 0 ? (
@@ -344,7 +344,7 @@ export default function Scan() {
         {erro && <div className="text-center p-6 text-red-500">Erro ao conectar à API</div>}
 
         {carregando && !resultados && (
-          <div className="flex items-center justify-center gap-3 italic text-yellow-200">
+          <div className="flex items-center justify-center gap-3 italic text-yellow-200 pb-10">
             <Loader2 className="h-5 w-5 animate-spin" />
             <span>Buscando oportunidades...</span>
           </div>

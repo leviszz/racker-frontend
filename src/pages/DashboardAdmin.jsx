@@ -14,7 +14,7 @@ export default function DashboardAdmin() {
       const token = localStorage.getItem("token");
       
       // Adicionamos ?periodo=... no final da URL
-      const response = await fetch(`https://racker-ultra-api-update.onrender.com/admin/dashboard-stats?periodo=${periodoSelecionado}`, {
+      const response = await fetch(`http://127.0.0.1:8000/admin/dashboard-stats?periodo=${periodoSelecionado}`, {
         headers: { 
           "Authorization": `Bearer ${token}` 
         }
@@ -120,7 +120,7 @@ export default function DashboardAdmin() {
           </div>
 
           <div className="space-y-3">
-            {stats?.ranking_usuarios.map((user, index) => (
+            {(stats?.ranking_usuarios ?? []).map((user, index) => (
               <div 
                 key={index} 
                 className="flex justify-between items-center p-4 bg-slate-800/40 hover:bg-slate-800/80 transition-all rounded-2xl border border-slate-700/50"
@@ -143,7 +143,7 @@ export default function DashboardAdmin() {
               </div>
             ))}
 
-            {stats?.ranking_usuarios.length === 0 && (
+            {(stats?.ranking_usuarios ?? []).length === 0 && (
               <p className="text-center text-slate-500 py-10 italic">Nenhum dado registado para este período.</p>
             )}
           </div>
