@@ -16,7 +16,7 @@ export default function ResetPassword() {
   useEffect(() => {
     if (!sucesso) return
     if (contador === 0) {
-      navigate("/login")
+      navigate("/")
       return
     }
     const timer = setTimeout(() => setContador((c) => c - 1), 1000)
@@ -76,7 +76,7 @@ export default function ResetPassword() {
             </p>
 
             <button
-              onClick={() => navigate("/login")}
+              onClick={() => navigate("/")}
               className="mt-2 w-full p-3 rounded bg-yellow-500 hover:bg-yellow-400 text-black font-bold transition-all"
             >
               Ir para o Login agora
