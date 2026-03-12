@@ -12,8 +12,8 @@ https://www.vbossracker.com/
 
 ## 📸 Screenshots
 ![Tela de login](./screenshots/login.png)
-![Tela principal 1](./screemshots/scan1.png)
-![Tela principal 2](./screemshots/scan2.png)
+![Tela principal 1](./screenshots/scan1.png)
+![Tela principal 2](./screenshots/scan2.png)
 
 ## 📌 Funcionalidades
 - Login e autenticação
