@@ -14,7 +14,7 @@ export default function DashboardAdmin() {
       const token = localStorage.getItem("token");
       
       // Adicionamos ?periodo=... no final da URL
-      const response = await fetch(`http://127.0.0.1:8000/admin/dashboard-stats?periodo=${periodoSelecionado}`, {
+      const response = await fetch(`https://racker-ultra-api-update.onrender.com/admin/dashboard-stats?periodo=${periodoSelecionado}`, {
         headers: { 
           "Authorization": `Bearer ${token}` 
         }

@@ -114,7 +114,7 @@ export default function Scan() {
     const token = localStorage.getItem("token");
     if (!token) return;
     try {
-      await fetch(`http://127.0.0.1:8000/track-coin/${moeda}`, {
+      await fetch(`https://racker-ultra-api-update.onrender.com/track-coin/${moeda}`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -128,7 +128,7 @@ export default function Scan() {
     if (!token) return;
     setCarregando(true);
     try {
-      const res = await fetch("http://127.0.0.1:8000/scan", {
+      const res = await fetch("https://racker-ultra-api-update.onrender.com/scan", {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
